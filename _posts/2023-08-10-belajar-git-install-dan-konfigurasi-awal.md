@@ -27,6 +27,8 @@ Jika sudah berhasil terinstall maka tampilannya akan seperti ini:
 
 <img src="/assets/images/git-version.png" />
 
+### Konfigurasi Awal :
+
 Setelah berhasil menginstall git, kita harus menetapkan username dan email untuk git. Hal ini berguna ketika nanti kita melakukan perintah commit.
 Masukan perintah berikut di terminal dan sesuaikan dengan username dan email kamu:
 
