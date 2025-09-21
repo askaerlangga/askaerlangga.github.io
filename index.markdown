@@ -12,6 +12,5 @@ layout: home
         object-fit: cover;
         display: block;">
 
-Hello World! &#128075;
-
+Hello World! &#128075;<br/>
 I am Aska Erlangga, a software developer.
