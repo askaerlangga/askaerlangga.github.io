@@ -4,3 +4,14 @@
 
 layout: home
 ---
+<img
+    src="/assets/images/profile.jpg"
+    style="
+        width: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;">
+
+Hello World! &#128075;
+
+I am Aska Erlangga, a software developer.
