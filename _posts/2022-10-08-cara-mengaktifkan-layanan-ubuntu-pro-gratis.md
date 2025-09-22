@@ -2,7 +2,7 @@
 layout: post
 title:  "Cara Mengaktifkan Layanan Ubuntu Pro Gratis"
 date:   2020-10-08 20:00:00 +0700
-categories: Ubuntu-Pro Ubuntu
+tags: [ubuntu]
 ---
 
 <img src="/assets/images/ubuntu-pro.jpg" />

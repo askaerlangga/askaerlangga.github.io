@@ -2,7 +2,7 @@
 layout: post
 title:  'Mengatasi "GnuTLS recv error (-110): The TLS connection was non-properly terminated" pada Git Ubuntu'
 date:   2024-07-06 20:00:00 +0700
-categories: git ubuntu
+tags: [git,ubuntu]
 ---
 
 <img src="/assets/images/git.png" />

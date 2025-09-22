@@ -2,7 +2,7 @@
 layout: post
 title:  "Belajar Git: Install dan Konfigurasi Awal"
 date:   2023-08-10 20:00:00 +0700
-categories: Git
+tags: [git]
 ---
 
 <img src="/assets/images/git.png" />

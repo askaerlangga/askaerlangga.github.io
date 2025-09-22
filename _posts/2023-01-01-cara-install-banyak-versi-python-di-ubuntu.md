@@ -2,7 +2,7 @@
 layout: post
 title:  "Cara Install Banyak versi Python di Ubuntu"
 date:   2023-01-01 20:00:00 +0700
-categories: Python Ubuntu
+tags: [ubuntu,python]
 ---
 
 <img src="/assets/images/python.png" />
@@ -16,7 +16,9 @@ Ubuntu merupakan distro linux point release, yang dimana dia akan menggunakan ve
 
 Sebagai developer, kita bisa saja ada keperluan untuk menggunakan versi tertentu dari python. Misalnya ketika library dari project yang kita buat tidak support versi python yang kita gunakan saat ini, maka mau tidak mau kita harus menggunakan versi lain.
 
-Tamvahkan repository PPA milik **deadnakes** menggunakan terminal :
+### Install dengan menambahkan Repository PPA:
+
+Tambahkan repository PPA milik **deadnakes** menggunakan terminal :
 
 {% highlight bash %}
 sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt update

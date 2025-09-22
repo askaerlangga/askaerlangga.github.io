@@ -2,7 +2,7 @@
 layout: post
 title:  "Cara Install Cloudflare WARP di Ubuntu"
 date:   2020-10-06 20:00:00 +0700
-categories: Cloudflare Ubuntu
+tags: [cloudflare,ubuntu]
 ---
 
 <img src="/assets/images/cloudflare.jpg" />
