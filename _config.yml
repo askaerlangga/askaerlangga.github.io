@@ -33,6 +33,19 @@ theme: minima
 plugins:
   - jekyll-feed
 
+collections:
+  tags:
+    output: true            # supaya tiap dokumen tag jadi halaman
+    permalink: /tag/:name/  # URL per tag, mis. /tag/jekyll/
+
+# opsional: default layout utk koleksi "tags"
+defaults:
+  - scope:
+      path: ""
+      type: tags
+    values:
+      layout: tag
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
