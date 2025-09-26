@@ -47,6 +47,12 @@ ping IP_SERVER -c 4
 
 <img src="/assets/images/tailscale-test-ping.png" alt="tailscale-test-ping" />
 
+Akses ke server menggunakan SSH:
+
+{% highlight bash %}
+ssh user_server@IP_SERVER
+{% endhighlight %}
+
 [how-tailscale-works]: https://tailscale.com/blog/how-tailscale-works
 [login-tailscale]: https://login.tailscale.com
 [download-tailscale]: https://tailscale.com/download
