@@ -2,7 +2,7 @@
 layout: post
 title:  "Belajar Odoo: Inherit dan Override Onchange Method"
 date:   2025-04-26
-updated_date: 2025-09-26
+update_date: 2025-09-26
 tags: [odoo]
 ---
 

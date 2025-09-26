@@ -2,7 +2,7 @@
 layout: post
 title: "Belajar Odoo: Field multiple file upload"
 date: 2025-05-18
-updated_date: 2025-09-26
+update_date: 2025-09-26
 tags: [odoo]
 ---
 
