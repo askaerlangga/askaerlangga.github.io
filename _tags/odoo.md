@@ -1,0 +1,4 @@
+---
+name: odoo
+title: Odoo
+---
