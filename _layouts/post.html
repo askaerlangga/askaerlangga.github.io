@@ -23,6 +23,15 @@ layout: default
       %}, {% endunless %}
       {% endfor %}
       {%- endif %}
+
+      <!-- Updated date -->
+      <br/>
+      {% if page.updated_date %}
+      <time datetime="{{ page.updated_date | date_to_xmlschema }}">
+        Last Updated: {{ page.updated_date | date: date_format }}
+      </time>
+      {% endif %}
+
     </p>
       
   </header>
