@@ -5,7 +5,7 @@
 layout: home
 ---
 <img
-    src="/assets/images/profile.png"
+    src="/assets/images/profile.webp"
     style="
         width: 150px;
         border-radius: 50%;
