@@ -2,7 +2,7 @@
 layout: post
 title: "Belajar Odoo: Menambahkan item baru pada field Selection"
 date: 2025-05-18
-update_date: 2025-09-28
+modified_date: 2025-09-28
 tags: [odoo]
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title:  'Mengatasi Warning: database "postgres" has a collation version mismatch pada Postgresql'
 date:   2024-07-06
-update_date: 2025-10-30
+modified_date: 2025-10-30
 tags: [postgresql,database]
 ---
 

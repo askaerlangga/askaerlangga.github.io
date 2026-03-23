@@ -4,4 +4,6 @@ title: About
 permalink: /about/
 ---
 
-<img src="/assets/images/about.gif" />
+<div style="text-align: center;">
+    <img src="/assets/images/about.gif" />
+</div>

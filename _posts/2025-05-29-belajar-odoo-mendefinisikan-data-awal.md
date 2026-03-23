@@ -2,7 +2,7 @@
 layout: post
 title: "Belajar Odoo: Mendefinisikan data awal"
 date: 2025-05-29
-update_date: 2025-09-28
+modified_date: 2025-09-28
 tags: [odoo]
 ---
 
