@@ -8,7 +8,7 @@ tags: [odoo]
 
 <img src="/assets/images/odoo.png" alt="thumbnail" />
 
-Contoh kasus: ketika field "tipe kendaraan" berubah, selain mengubah "tempat parkir" maka akan mengubah "nominal parkir" juga.
+Dalam banyak proses bisnis, satu perubahan input sering perlu memicu perubahan pada input lain secara otomatis — supaya user tidak perlu mengisi manual dan risiko salah data berkurang. Contoh kasus yang umum: sebuah lahan parkir punya dua tipe kendaraan (motor dan mobil), dan setiap tipe punya lokasi parkir serta tarif yang berbeda. Ketika field "tipe kendaraan" berubah, selain mengubah "tempat parkir" maka akan mengubah "nominal parkir" juga — dan aturan ini bisa diperluas lewat inherit tanpa mengubah logic yang sudah ada di module utama.
 
 Model utama:
 
@@ -54,3 +54,5 @@ class NamaModel(model.Models):
             rec.parkir = 5000 if rec.type == 'mobil' else 2000
 
 {% endhighlight %}
+
+Dengan pola inherit seperti ini, penambahan logic baru tidak perlu mengubah kode module aslinya sama sekali — cukup override method-nya, panggil `super()` supaya logic lama tetap berjalan, lalu tambahkan aturan bisnis baru di atasnya. Cara ini juga memudahkan saat module utama di-update, karena perubahan kita tetap terpisah dan aman dari konflik.

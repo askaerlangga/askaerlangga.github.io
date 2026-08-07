@@ -7,7 +7,7 @@ tags: [cloudflare,ubuntu]
 
 <img src="/assets/images/cloudflare.jpg" />
 
-Cloudflare WARP adalah client VPN gratis dari Cloudflare yang mengenkripsi traffic internet kita dan melewatkannya lewat network Cloudflare (1.1.1.1). Selain untuk privasi, WARP juga sering dipakai untuk mengatasi koneksi yang lambat atau diblokir ISP tertentu, tanpa perlu setting VPN yang rumit. Berikut cara install-nya di Ubuntu.
+Buat yang sering mengalami koneksi lambat, tidak stabil, atau situs tertentu diblokir ISP, Cloudflare WARP bisa jadi solusi praktis. WARP adalah client VPN gratis dari Cloudflare yang mengenkripsi traffic internet kita dan menyalurkannya lewat jaringan mereka (1.1.1.1), tanpa perlu setting VPN yang rumit seperti biasanya. Berikut cara install-nya di Ubuntu.
 
 ### Tambahkan Repository
 

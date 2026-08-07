@@ -8,7 +8,7 @@ tags: [odoo]
 
 <img src="/assets/images/odoo.png" />
 
-Data awal akan dibuat saat kita pertamakali install modul.
+Banyak module butuh data referensi yang sudah tersedia begitu module tersebut pertama kali di-install — misalnya daftar tipe kendaraan, kategori produk, atau master data lain yang jadi acuan proses bisnis, tanpa harus diinput manual satu per satu oleh user. Data awal akan dibuat saat kita pertamakali install modul.
 
 Buat file **".xml"** di dalam folder **"data"** (nama_modul/data), isinya:
 
@@ -59,3 +59,5 @@ Masukan file **"tipe_kendaraan_data.xml"** yang sudah dibuat di manifest:
         'views/tipe_kendaraan_views.xml',
 	],
 {% endhighlight %}
+
+Dengan cara ini, begitu module ter-install (atau di-upgrade), data referensi seperti "Motor" dan "Mobil" di atas sudah langsung tersedia di sistem — user tidak perlu membuatnya manual, dan konsistensi data antar environment (development, staging, production) lebih terjaga karena datanya ikut dibawa oleh module.

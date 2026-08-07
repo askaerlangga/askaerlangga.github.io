@@ -7,7 +7,7 @@ tags: [git]
 
 <img src="/assets/images/git.png" />
 
-Git adalah pondasi paling dasar sebelum kita bisa kerja kolaborasi di project apapun — entah itu push ke GitHub, kerja tim, atau sekadar mau punya history perubahan kode sendiri. Sebelum bisa pakai git, ada dua langkah wajib: install, lalu konfigurasi identitas kita di dalamnya. Berikut caranya di Ubuntu.
+Ketika kerja bareng tim atau butuh mencatat setiap perubahan kode secara rapi, git jadi tools paling dasar yang wajib disiapkan sebelum mulai kolaborasi — baik untuk push ke GitHub, kerja bareng developer lain, atau sekadar menyimpan history perubahan sendiri. Sebelum bisa dipakai, ada dua langkah wajib: install git, lalu konfigurasi identitas kita di dalamnya. Berikut caranya di Ubuntu.
 
 ### Install git di Ubuntu :
 

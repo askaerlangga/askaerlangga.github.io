@@ -5,7 +5,7 @@ date:   2026-08-02
 tags: [odoo, docker]
 ---
 
-Setelah Odoo berjalan di Docker (lihat artikel sebelumnya tentang [setup Odoo dengan Docker]({% post_url 2026-08-02-cara-setup-odoo-dengan-docker %})), langkah selanjutnya adalah membuat custom module sendiri dan menjalankannya di container tersebut. Berikut langkah-langkahnya.
+Ketika kebutuhan bisnis sudah tidak bisa lagi dipenuhi oleh module standar Odoo, langkah yang biasa diambil adalah membuat custom module sendiri — entah untuk menambah field baru, proses approval khusus, atau laporan yang sesuai kebutuhan perusahaan. Setelah Odoo berjalan di Docker (lihat artikel sebelumnya tentang [setup Odoo dengan Docker]({% post_url 2026-08-02-cara-setup-odoo-dengan-docker %})), langkah selanjutnya adalah membuat custom module sendiri dan menjalankannya di container tersebut. Berikut langkah-langkahnya.
 
 ### Struktur Folder Module
 

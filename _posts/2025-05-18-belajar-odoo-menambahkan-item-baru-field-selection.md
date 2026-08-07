@@ -8,6 +8,8 @@ tags: [odoo]
 
 <img src="/assets/images/odoo.png" />
 
+Dalam workflow bisnis, status sebuah dokumen sering bertambah seiring proses yang makin kompleks — misalnya awalnya cukup "draft" dan "confirm", lalu perusahaan butuh tahapan tambahan seperti "done" atau "cancel" untuk mencerminkan proses aktual di lapangan. Kalau field status ini ada di module orang lain atau module inti Odoo, kita tidak perlu mengubah kode aslinya — cukup manfaatkan mekanisme inherit untuk menambah pilihan baru.
+
 ### Parent Model:
 
 Pada field **"state"** di model utama terdapat 2 item, yaitu **"draft"** dan **"confirm"**:
@@ -38,3 +40,5 @@ class NamaModel(model.Models):
         ('cancel', 'Canceled'),
     ])
 {% endhighlight %}
+
+Dengan `selection_add`, item baru langsung menyatu dengan pilihan yang sudah ada tanpa menghapus atau menimpa opsi lama — aman dipakai walau field tersebut sudah dipakai di banyak tempat (view, workflow, laporan) sebelum perubahan ini dibuat.

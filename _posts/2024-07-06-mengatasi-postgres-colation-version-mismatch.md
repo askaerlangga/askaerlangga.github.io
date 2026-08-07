@@ -8,6 +8,8 @@ tags: [postgresql,database]
 
 <img src="/assets/images/postgresql.png" alt="thumbnail" />
 
+Warning ini sering muncul setelah server di-upgrade OS-nya (misalnya dari Ubuntu 22.04 ke 24.04), karena versi library collation di sistem berubah sementara database yang sudah ada masih mencatat versi collation yang lama. Meski biasanya tidak langsung mengganggu operasional, warning ini sebaiknya tidak dibiarkan karena berpotensi menyebabkan hasil sorting/pencarian data yang tidak konsisten. Berikut cara mengatasinya.
+
 Masuk ke PSQL:
 
 {% highlight bash %}
@@ -27,3 +29,5 @@ Contoh database yang terkena warning collation version adalah "postgres":
 REINDEX DATABASE postgres;
 ALTER DATABASE postgres REFRESH COLLATION VERSION;
 {% endhighlight %}
+
+Setelah query ini dijalankan, PostgreSQL akan mencatat ulang versi collation sesuai library yang aktif di sistem, dan warning collation version mismatch tidak akan muncul lagi untuk database tersebut.
