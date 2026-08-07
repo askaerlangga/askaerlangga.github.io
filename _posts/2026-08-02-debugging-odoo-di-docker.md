@@ -9,7 +9,7 @@ Setelah Odoo jalan di Docker dan custom module ter-install (lihat artikel sebelu
 
 ### 1. Cek Log Container Dulu
 
-Langkah paling murah dan sering langsung ketemu akar masalahnya:
+Ini langkah paling sederhana untuk mulai debugging — cukup jalankan command di bawah, dan di banyak kasus akar masalahnya sudah langsung kelihatan:
 
 ```bash
 docker logs -f odoo19 --tail 100
@@ -127,7 +127,7 @@ Restart container, lalu attach dari IDE dengan konfigurasi `launch.json`:
 
 Setelah attach, breakpoint yang dipasang di IDE akan aktif dan proses akan berhenti tepat di titik tersebut.
 
-### 5. Pitfall Umum saat Debug di Docker
+### 5. Kendala Umum saat Debug di Docker
 
 - **Volume vs bind mount** — kalau folder addons di-mount lewat named volume (bukan bind mount langsung ke host), perubahan kode di host tidak otomatis masuk ke container. Harus di-sync ulang (`docker cp` atau tar-pipe) sebelum debug, kalau tidak kita akan menelusuri kode versi lama.
 - **Module belum di-upgrade** — setelah ubah kode Python, container perlu di-restart. Kalau ubah field/view, module juga perlu di-upgrade (`-u nama_module --stop-after-init`) supaya perubahan schema/tampilan benar-benar aktif.

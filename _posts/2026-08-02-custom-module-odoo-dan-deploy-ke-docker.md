@@ -76,7 +76,7 @@ Setelah restart/upgrade, jangan langsung asumsikan berhasil — cek dulu log con
 docker logs -f odoo19 --tail 50
 ```
 
-Kalau ada error saat load module (misalnya typo di XML atau field yang salah referensi), Odoo biasanya tetap `Up` di `docker compose ps` tapi module gagal terinstall/upgrade secara diam-diam. Jadi log adalah sumber kebenaran, bukan status container semata.
+Kalau ada error saat load module (misalnya typo di XML atau field yang salah referensi), Odoo biasanya tetap `Up` di `docker compose ps` tapi module gagal terinstall/upgrade secara diam-diam. Jadi selalu cek log untuk memastikan, jangan hanya mengandalkan status container.
 
 ### Penutup
 
