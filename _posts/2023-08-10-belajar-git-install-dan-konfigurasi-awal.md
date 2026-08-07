@@ -7,7 +7,7 @@ tags: [git]
 
 <img src="/assets/images/git.png" />
 
-Pada materi ini kita akan belajar cara menginstall dan konfigurasi awal git.
+Git adalah pondasi paling dasar sebelum kita bisa kerja kolaborasi di project apapun — entah itu push ke GitHub, kerja tim, atau sekadar mau punya history perubahan kode sendiri. Sebelum bisa pakai git, ada dua langkah wajib: install, lalu konfigurasi identitas kita di dalamnya. Berikut caranya di Ubuntu.
 
 ### Install git di Ubuntu :
 
@@ -42,3 +42,5 @@ Setelah selesai, cek dengan perintah berikut:
 {% highlight bash %}
 git config --list
 {% endhighlight %}
+
+Username dan email ini yang nantinya akan tercatat di setiap commit yang kita buat, jadi pastikan sudah benar sebelum mulai kerja — supaya history project kita rapi dan jelas siapa yang mengubah apa.
