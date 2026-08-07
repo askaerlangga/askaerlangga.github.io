@@ -5,7 +5,7 @@ date:   2026-08-02
 tags: [odoo, docker, debugging]
 ---
 
-Setelah Odoo jalan di Docker dan custom module ter-install (lihat dua artikel sebelumnya), cepat atau lambat kita akan menemui bug. Masalahnya, debugging aplikasi yang jalan di dalam container sedikit berbeda dari debugging biasa karena kode Python-nya "terkurung" di dalam container, terpisah dari environment host. Berikut beberapa teknik yang bisa dipakai.
+Setelah Odoo jalan di Docker dan custom module ter-install (lihat artikel sebelumnya tentang [setup Odoo dengan Docker]({% post_url 2026-08-02-cara-setup-odoo-dengan-docker %}) dan [membuat custom module dan deploy ke Docker]({% post_url 2026-08-02-custom-module-odoo-dan-deploy-ke-docker %})), cepat atau lambat kita akan menemui bug. Masalahnya, debugging aplikasi yang jalan di dalam container sedikit berbeda dari debugging biasa karena kode Python-nya "terkurung" di dalam container, terpisah dari environment host. Berikut beberapa teknik yang bisa dipakai.
 
 ### 1. Cek Log Container Dulu
 

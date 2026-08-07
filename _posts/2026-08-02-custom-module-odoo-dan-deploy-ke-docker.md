@@ -5,19 +5,11 @@ date:   2026-08-02
 tags: [odoo, docker]
 ---
 
-Ketika kebutuhan bisnis sudah tidak bisa lagi dipenuhi oleh module standar Odoo, langkah yang biasa diambil adalah membuat custom module sendiri — entah untuk menambah field baru, proses approval khusus, atau laporan yang sesuai kebutuhan perusahaan. Setelah Odoo berjalan di Docker (lihat artikel sebelumnya tentang [setup Odoo dengan Docker]({% post_url 2026-08-02-cara-setup-odoo-dengan-docker %})), langkah selanjutnya adalah membuat custom module sendiri dan menjalankannya di container tersebut. Berikut langkah-langkahnya.
+Ketika kebutuhan bisnis sudah tidak bisa lagi dipenuhi oleh module standar Odoo, langkah yang biasa diambil adalah membuat custom module sendiri — entah untuk menambah field baru, proses approval khusus, atau laporan yang sesuai kebutuhan perusahaan. Setelah Odoo berjalan di Docker (lihat artikel sebelumnya tentang [setup Odoo dengan Docker]({% post_url 2026-08-02-cara-setup-odoo-dengan-docker %})), tantangan berikutnya biasanya bukan lagi soal menulis kode module-nya, tapi bagaimana men-deploy dan meng-update module tersebut di container secara konsisten. Artikel ini fokus ke bagian deploy-nya.
 
-### Struktur Folder Module
+### Ringkasan Struktur Module
 
-Di dalam folder `./addons` yang sudah kita mount ke `/mnt/extra-addons`, buat folder module baru, misalnya `my_custom_module`:
-
-```bash
-mkdir -p addons/my_custom_module/models
-mkdir -p addons/my_custom_module/views
-mkdir -p addons/my_custom_module/security
-```
-
-Struktur minimal sebuah module Odoo:
+Sebagai gambaran singkat, module Odoo minimal terdiri dari beberapa file: `__manifest__.py` (metadata module), `__init__.py` (entry point Python), folder `models/` (logic dan field), `security/ir.model.access.csv` (hak akses), dan `views/` (tampilan form, list, menu). Semua file ini ditaruh di dalam folder `./addons` yang sudah kita mount ke `/mnt/extra-addons` lewat `docker-compose.yml`, misalnya di `addons/my_custom_module/`.
 
 ```
 my_custom_module/
@@ -32,119 +24,17 @@ my_custom_module/
     └── ir.model.access.csv
 ```
 
-### File __manifest__.py
-
-File ini berisi metadata module — nama, versi, dependency, dan daftar file yang harus di-load.
-
-```python
-{
-    'name': 'My Custom Module',
-    'version': '1.0',
-    'summary': 'Contoh custom module Odoo',
-    'category': 'Custom',
-    'author': 'Aska Erlangga',
-    'depends': ['base'],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/my_model_views.xml',
-    ],
-    'installable': True,
-    'application': True,
-}
-```
-
-### File __init__.py
-
-Di root module, isi dengan:
-
-```python
-from . import models
-```
-
-Di `models/__init__.py`:
-
-```python
-from . import my_model
-```
-
-### Membuat Model
-
-Isi `models/my_model.py` dengan model sederhana:
-
-```python
-from odoo import models, fields
-
-class MyModel(models.Model):
-    _name = 'my.custom.model'
-    _description = 'My Custom Model'
-
-    name = fields.Char(string='Name', required=True)
-    description = fields.Text(string='Description')
-    active = fields.Boolean(string='Active', default=True)
-```
-
-### Menambahkan Akses (Security)
-
-Setiap model baru wajib punya access rights, isi `security/ir.model.access.csv`:
-
-```csv
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_my_custom_model,my.custom.model,model_my_custom_model,,1,1,1,1
-```
-
-### Membuat View
-
-Isi `views/my_model_views.xml` dengan form, list, dan menu:
-
-```xml
-<odoo>
-    <record id="view_my_custom_model_form" model="ir.ui.view">
-        <field name="name">my.custom.model.form</field>
-        <field name="model">my.custom.model</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="description"/>
-                        <field name="active"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="view_my_custom_model_list" model="ir.ui.view">
-        <field name="name">my.custom.model.list</field>
-        <field name="model">my.custom.model</field>
-        <field name="arch" type="xml">
-            <list>
-                <field name="name"/>
-                <field name="active"/>
-            </list>
-        </field>
-    </record>
-
-    <record id="action_my_custom_model" model="ir.actions.act_window">
-        <field name="name">My Custom Model</field>
-        <field name="res_model">my.custom.model</field>
-        <field name="view_mode">list,form</field>
-    </record>
-
-    <menuitem id="menu_my_custom_module_root" name="My Custom Module"/>
-    <menuitem id="menu_my_custom_model" name="My Records"
-              parent="menu_my_custom_module_root"
-              action="action_my_custom_model"/>
-</odoo>
-```
+Detail cara menulis kode model, view, dan security tidak dibahas lagi di sini — fokus kita selanjutnya adalah bagaimana module ini benar-benar berjalan di container.
 
 ### Deploy Module ke Container
 
-Karena folder `./addons` sudah di-mount langsung ke container lewat `docker-compose.yml`, Odoo bisa langsung membaca module baru begitu container di-restart:
+Karena folder `./addons` sudah di-mount langsung ke container lewat `docker-compose.yml`, Odoo bisa langsung membaca module baru begitu container di-restart — tidak perlu rebuild image sama sekali:
 
 ```bash
 docker compose restart odoo
 ```
+
+Restart ini membuat Odoo membaca ulang **addons path**, sehingga module baru yang ditaruh di folder tersebut baru dikenali oleh sistem (statusnya masih "Uninstalled" di menu Apps).
 
 ### Install Module Lewat UI
 
@@ -156,6 +46,16 @@ docker compose restart odoo
 
 Setelah terinstall, menu **My Custom Module** akan muncul di sidebar utama, siap digunakan.
 
+### Install/Update Lewat CLI (Tanpa UI)
+
+Kalau sedang setup ulang environment atau butuh deploy tanpa membuka browser (misalnya lewat script CI/CD), instalasi bisa dilakukan langsung lewat command line di dalam container:
+
+```bash
+docker compose exec odoo odoo -d <nama_database> -i my_custom_module --stop-after-init
+```
+
+Flag `-i` (install) dipakai untuk module yang belum pernah diinstall, sementara `-u` (update) dipakai untuk module yang sudah terinstall tapi kodenya baru diubah. Flag `--stop-after-init` penting supaya proses Odoo langsung berhenti setelah instalasi selesai, bukan tetap berjalan sebagai server (yang bisa bikin dua proses Odoo rebutan port).
+
 ### Update Module Setelah Ubah Code
 
 Setiap kali mengubah kode Python atau XML pada module, container perlu di-restart agar perubahan terbaca, lalu module di-upgrade agar perubahan (field baru, view baru) diterapkan ke database:
@@ -166,6 +66,18 @@ docker compose exec odoo odoo -d <nama_database> -u my_custom_module --stop-afte
 docker compose restart odoo
 ```
 
+Urutannya penting: restart pertama supaya Odoo membaca kode Python terbaru, `-u` untuk migrasi schema/view ke database, dan restart kedua untuk memastikan proses server berjalan normal kembali (bukan proses `--stop-after-init` yang sudah berhenti).
+
+### Verifikasi Deploy Berhasil
+
+Setelah restart/upgrade, jangan langsung asumsikan berhasil — cek dulu log container untuk memastikan tidak ada error saat loading module:
+
+```bash
+docker logs -f odoo19 --tail 50
+```
+
+Kalau ada error saat load module (misalnya typo di XML atau field yang salah referensi), Odoo biasanya tetap `Up` di `docker compose ps` tapi module gagal terinstall/upgrade secara diam-diam. Jadi log adalah sumber kebenaran, bukan status container semata.
+
 ### Penutup
 
-Dengan volume mount `./addons` di Docker Compose, workflow develop custom module Odoo jadi cepat — cukup edit file di host, restart/upgrade container, dan module langsung ter-refresh tanpa perlu rebuild image. Cocok untuk iterasi development sebelum module dinaikkan ke environment staging atau production.
+Dengan volume mount `./addons` di Docker Compose, proses deploy custom module Odoo jadi cepat — cukup edit file di host, restart/upgrade container lewat UI atau CLI, dan module langsung ter-refresh tanpa perlu rebuild image. Cocok untuk iterasi development sebelum module dinaikkan ke environment staging atau production, dengan catatan tetap verifikasi lewat log setiap kali deploy.
